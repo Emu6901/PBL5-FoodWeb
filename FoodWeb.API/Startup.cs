@@ -68,6 +68,11 @@ namespace FoodWeb.API
 
             app.UseCors("CorsPolicy");
             app.UseCors("signalr");
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials());
 
             app.UseRouting();
 
