@@ -39,6 +39,11 @@ namespace FoodWeb.API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    if(!string.IsNullOrEmpty(port)) 
+                    {
+                        webBuilder.UseUrls($"http://*:{port}");
+                    }
                     webBuilder.UseStartup<Startup>();
                 });
     }
