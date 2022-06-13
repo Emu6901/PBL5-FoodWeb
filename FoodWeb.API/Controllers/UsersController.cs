@@ -96,10 +96,9 @@ namespace FoodWeb.API.Controllers
         [AllowAnonymous]
         public ActionResult<IEnumerable<SellerViewDTO>> GetAllSellersPaging(int numberPage)
         {
-            if(numberPage > _userRepository.GetTotalPageSellers())
-                return NotFound("Page is not exist");
-
-            return Ok(_userRepository.GetAllSellersPaging(numberPage));
+            var result = _userRepository.GetAllSellersPaging(numberPage);
+            if (result.Count() == 0) return NotFound("Page is not exist");
+            return Ok(result);
         }
 
         [HttpGet("{Id}/foods/getTotalPageFoodByIdSeller")]  // Lấy tổng số trang food của 1 seller

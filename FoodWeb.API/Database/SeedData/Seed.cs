@@ -135,6 +135,7 @@ namespace PBL5.FoodWeb.API.Database.SeedData
 
         public async Task<bool> SeedFoods()
         {
+            Console.WriteLine("Food");
             if (context.Foods.Any())
             {
                 return false;
