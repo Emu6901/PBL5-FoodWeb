@@ -193,6 +193,11 @@ namespace FoodWeb.API.Database.Repositories
         public GroupDetailDTO CheckBanGroup(int IdUser){
             var account = _context.Accounts.FirstOrDefault(u => u.UserId == IdUser);
             var groupDetail = _context.GroupDetails.FirstOrDefault(u => u.AccountId == account.IdAccount);
+            
+            if(groupDetail.EnableGroupDetail)   return _mapper.Map<GroupDetailDTO>(groupDetail);
+
+            if(DateTime.Now > groupDetail.TimeEnable)
+                return UnBanGroup(IdUser);
 
             return _mapper.Map<GroupDetailDTO>(groupDetail);
         }
