@@ -33,14 +33,14 @@ namespace FoodWeb.API
                     builder.AllowAnyOrigin()
                     .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowAnyOrigin()
                 );
                 o.AddPolicy("signalr",
-                    builder => builder
-                    .AllowAnyMethod()
+                    builder => builder.AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowCredentials()
-                    .SetIsOriginAllowed(hostName => true));
+                    .AllowAnyMethod()
+                    // .AllowCredentials()
+                    // .SetIsOriginAllowed(hostName => true)
+                );
             });
 
 
